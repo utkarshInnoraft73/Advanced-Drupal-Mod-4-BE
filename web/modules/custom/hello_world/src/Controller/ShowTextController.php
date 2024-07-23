@@ -21,9 +21,8 @@ public function showText() : array {
 
   return [
     '#type' => 'markup',
-    '#markup' => $this->t( string: "Hello babu". $user->getDisplayName() ),
+    '#markup' => $this->t( string: "Hello". $user->getDisplayName() ),
       '#cache' => [
-        // 'contexts' => ['user'],
         'tags' => ['user:'. $this->currentUser()->id()]
       ],
   ];
