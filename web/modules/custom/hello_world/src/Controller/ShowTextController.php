@@ -5,28 +5,29 @@ namespace Drupal\hello_world\Controller;
 use Drupal\Core\Controller\ControllerBase;
 
 /**
- * ShowTextController
+ * Class ShowTextController.
  */
 class ShowTextController extends ControllerBase {
 
-/**
- * Method showText
- *
- * @return array
- */
-public function showText() : array {
-  $user = $this->currentUser();
-  if (\Drupal::currentUser()->hasPermission('custom_permission')) {
-  $userName = \Drupal::currentUser()->getDisplayName();
+  /**
+   * Method showText.
+   *
+   * @return array
+   *   Text to show the "Hello [User Name]".
+   */
+  public function showText() : array {
+    $user = $this->currentUser();
+    if (\Drupal::currentUser()->hasPermission('custom_permission')) {
+      $userName = \Drupal::currentUser()->getDisplayName();
 
-  return [
-    '#type' => 'markup',
-    '#markup' => $this->t( string: "Hello". $user->getDisplayName() ),
-      '#cache' => [
-        'tags' => ['user:'. $this->currentUser()->id()]
-      ],
-  ];
-}
+      return [
+        '#type' => 'markup',
+        '#markup' => $this->t("Hello") . $user->getDisplayName(),
+        '#cache' => [
+          'tags' => ['user:' . $this->currentUser()->id()],
+        ],
+      ];
+    }
     return [
       '#type' => 'markup',
       '#markup' => 'No Permission',
@@ -34,5 +35,6 @@ public function showText() : array {
         'tags' => ['user:' . \Drupal::currentUser()->id()],
       ],
     ];
-}
+  }
+
 }
