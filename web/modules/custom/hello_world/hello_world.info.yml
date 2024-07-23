@@ -1,0 +1,9 @@
+name: Hello world
+description: 'This module show the text hello world'
+type: module
+package: custom
+core_version_requirement: ^9.4 || ^10
+
+dependencies:
+  # - field_ui:field_ui
+  - drupal:views
